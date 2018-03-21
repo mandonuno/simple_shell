@@ -10,41 +10,6 @@ void printprompt(char *prompt)
 	write(1, prompt, _strlen(prompt));
 }
 /**
- * line_read - reads a line
- * Return: the line that was read
- */
-char *read_line(void)
-{
-	char **argv;
-	pid_t pid;
-	char *buf;
-	size_t size;
-	int status;
-	
-	buf = malloc(size * sizeof(char));
-	if (buf == NULL)
-		return (NULL);
-	while ((getline(&buf, &size, stdin)) != EOF)
-	{
-		pid = fork();
-		argv[0] = buf;
-		buf[_strlen(buf) - 1] = '\0';
-		if (pid < 0)
-		{
-			perror("Error:\n");
-			return (NULL);
-		}
-		if (pid == 0)
-		{
-			status = execve(argv[0], argv, NULL);
-		}
-		wait(&status);
-	}
-	free(buf);
-	return (0);
-
-}
-/**
  * _getenv - gets environment variable
  * @name: name of environment varibale
  * Return:
