@@ -5,34 +5,46 @@
  * @argv: array of arguments
  * Return: Always 0
  */
-int main(__attribute__((unused))int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	pid_t pid;
-	char *buf;
-	size_t size;
-	int status;
+	(void)argc;
+	(void)argv;
+	simple_shell();
 
-	buf = malloc(size * sizeof(char));
-	if (buf == NULL)
-		return (-1);
-		printprompt("$ ");
-	while ((getline(&buf, &size, stdin)) != EOF)
-	{
-		pid = fork();
-		argv[0] = buf;
-		buf[_strlen(buf) - 1] = '\0';
-		if (pid < 0)
-		{
-			perror("Error:\n");
-			return (1);
-		}
-		if (pid == 0)
-		{
-			status = execve(argv[0], argv, NULL);
-		}
-		wait(&status);
-		printprompt("$ ");
-		}
-	free(buf);
 	return (0);
+}
+/**
+ * simple_shell - simple UNIX command interpreter
+ * Return: Always 0
+ */
+void simple_shell(void)
+{
+	char *args, **arr, *env, **path;
+	size_t len;
+
+	len = 0;
+	args = NULL;
+	arr = malloc(sizeof(char *) * BUFSIZE);
+	if (arr == NULL)
+		exit(1);
+	printprompt("$ ");
+	while (getline(&args, &len, stdin) != EOF)
+	{
+		if (args[0] != '\n')
+		{
+			arr = token_line(args);
+			if (builtin_func(arr) == 1)
+			{
+				env = _getenv("PATH");
+				path = _getpath(env, arr);
+				execute(arr, path);
+				printprompt("$ ");
+			}
+			else
+				printprompt("$ ");
+			free(arr);
+		}
+		else
+			printprompt("$ ");
+	}
 }

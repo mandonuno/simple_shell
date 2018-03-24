@@ -15,58 +15,6 @@ int _strlen(char *s)
 	return (i);
 }
 /**
- * _strspn - gets the length of a prefix substring
- * @s: pointer to string
- * @accept: substring
- * Return: length
- */
-unsigned int _strspn(char *s, char *accept)
-{
-	int len = 0;
-
-	while (*s && _strchr(accept, *s++))
-	{
-		len++;
-	}
-	return (len);
-}
-/**
- * _strchr - locates a character in a string
- * @s: pointer to string
- * @c: character first occurrence of the character
- * Return: pointer to first occurrence of character c
- */
-char *_strchr(char *s, char c)
-{
-	while (*s != '\0')
-	{
-		if (*s == c)
-			return (s);
-		s++;
-	}
-	if (*s == c)
-		return (s);
-	else
-		return ('\0');
-}
-/**
- * _strpbrk - searches a string for any of a set of bytes
- * @s: pointer to string
- * @accept: bytes
- * Return: pointer to the character, or null if no char is found
- */
-char *_strpbrk(char *s, char *accept)
-{
-	while (*s)
-	{
-		if (_strchr(accept, *s++))
-		{
-			return (--s);
-		}
-	}
-	return ('\0');
-}
-/**
  * _strdup - returns a pointer to a new string
  * which is a duplicate of the string str
  * @str: pointer to string
@@ -87,4 +35,61 @@ char *_strdup(char *str)
 	}
 	_strcpy(s, str);
 	return (s);
+}
+/**
+ * _strcat - concat two strings
+ * @src: source string
+ * @dest: string to concat
+ * Return: pointer to the resulting string dest
+ */
+char *_strcat(char *dest, char *src)
+{
+	int i, len;
+
+	len = _strlen(dest);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[len + i] = src[i];
+		i++;
+	}
+	dest[len + i] = '\0';
+	return (dest);
+}
+/**
+ * _strcpy - copies the string pointed to by src
+ * @dest: copy of string
+ * @src: pointer to string
+ * Return: copied string
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i = 0;
+
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
+}
+/**
+ * _strncmp - compares up to n characters of the string
+ * @s1: string 1
+ * @s2: string 2
+ * @n: n characters
+ * Return: 0
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	while (n--)
+	{
+		if (*s1 != *s2)
+		{
+			s1++;
+			s2++;
+			return (*(unsigned char *)(s1 - 1) - *(unsigned char *)(s2 - 1));
+		}
+	}
+	return (0);
 }

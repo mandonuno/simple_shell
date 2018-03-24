@@ -11,18 +11,12 @@ int _putchar(char c)
 	return (write(1, &c, 1));
 }
 /**
- * _puts - prints a string followed by a new line
- * @str: pointer to a string
- * Return: string
+ * printprompt - prints the prompt
+ * @prompt: prompt
  */
-void _puts(char *str)
+void printprompt(char *prompt)
 {
-	int i = 0;
-
-	while (str[i] != '\0')
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	_putchar('\n');
+	if (prompt == NULL)
+		return;
+	write(1, prompt, _strlen(prompt));
 }
