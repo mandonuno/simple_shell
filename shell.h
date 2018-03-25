@@ -44,6 +44,7 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 int builtin_func(char **args);
 int exit_function(char **args);
 int printenv(char **args);
+int help_function(char **args);
 
 /* General Functions */
 void simple_shell(void);

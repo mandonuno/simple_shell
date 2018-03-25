@@ -9,6 +9,7 @@ int builtin_func(char **args)
 	builtins_t builtins[] = {
 		{"exit", exit_function},
 		{"env", printenv},
+		{"help", help_function},
 		{NULL, NULL}
 	};
 	int i, j, len;
@@ -73,5 +74,21 @@ int printenv(char **args)
 		}
 		return (0);
 	}
+	return (1);
+}
+/**
+ * help_function - prints help
+ * @args: void 
+ * Return: 1
+ */
+int help_function(char **args)
+{
+	(void)args;
+
+	printprompt("\n ***SIMPLE SHELL*** \n");
+	printprompt("Type program names and arguments, and hit enter.\n");
+	printprompt("Try [command name] [arguments]\n");
+	printprompt("Example:  ls -la\n");
+	printprompt("Use the man command for information on other commands.\n\n");
 	return (1);
 }
