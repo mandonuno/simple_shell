@@ -78,14 +78,14 @@ int printenv(char **args)
 }
 /**
  * help_function - prints help
- * @args: void 
+ * @args: void
  * Return: 1
  */
 int help_function(char **args)
 {
 	(void)args;
 
-	printprompt("\n ***SIMPLE SHELL*** \n");
+	printprompt("\n\t***SIMPLE SHELL***\t\n\n");
 	printprompt("Type program names and arguments, and hit enter.\n");
 	printprompt("Try [command name] [arguments]\n");
 	printprompt("Example:  ls -la\n");
