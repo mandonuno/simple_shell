@@ -11,8 +11,8 @@
  */
 typedef struct builtins_s
 {
-        char *name;
-        int (*func)(char **);
+	char *name;
+	int (*func)(char **);
 } builtins_t;
 
 /* Headers */
@@ -53,4 +53,6 @@ char **_getpath(char *str, char **args);
 void execute(char **arr, char **args);
 char **token_line(char *line);
 char *_memset(char *s, char b, unsigned int n);
+int _atoi(char *s);
+
 #endif

@@ -42,12 +42,24 @@ int builtin_func(char **args)
 /**
  * exit_function - exits shell
  * @args: string of arguments
- * Return: 0
+ * Return: 1
  */
 int exit_function(char **args)
 {
-	free(args);
-	_exit(0);
+	int status;
+
+	if (args[1] == NULL)
+	{
+		free(args);
+		_exit(0);
+	}
+	else
+	{
+		status = _atoi(args[1]);
+		free(args);
+		_exit(status);
+	}
+	return (1);
 }
 /**
  * printenv - prints the environment of process
