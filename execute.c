@@ -20,8 +20,8 @@ void execute(char **arr, char **args)
 				i++;
 		printprompt("\aCommand not found\n");
 		printprompt("Run command [help]\n");
+		_exit(0);
 	}
 	else
 		wait(&status);
 }
-
