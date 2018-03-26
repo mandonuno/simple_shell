@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 	simple_shell();
-
-	return (0);
+	printprompt("\n");
+ 	return (0);
 }
 /**
  * simple_shell - simple UNIX command interpreter

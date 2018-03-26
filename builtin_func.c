@@ -86,6 +86,7 @@ int printenv(char **args)
 		}
 		return (0);
 	}
+	_putchar('\n');
 	return (1);
 }
 /**
