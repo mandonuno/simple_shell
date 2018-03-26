@@ -18,7 +18,8 @@ void execute(char **arr, char **args)
 		while (args[i] != NULL)
 			if (execve(args[i], arr, NULL) == -1)
 				i++;
-		printprompt("command does not exist.\n");
+		printprompt("\aCommand not found\n");
+		printprompt("Run command [help]\n");
 	}
 	else
 		wait(&status);
