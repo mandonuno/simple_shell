@@ -41,5 +41,5 @@ Downloads         Videos
 ```
 
 ### Authors
--[**Armando Nuno**](https://github.com/mandonuno)
--[**Leon Cheung**](https://github.com/hiddenjem245)
+*[**Armando Nuno**](https://github.com/mandonuno)
+*[**Leon Cheung**](https://github.com/hiddenjem245)
