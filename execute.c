@@ -23,5 +23,14 @@ void execute(char **arr, char **args)
 		_exit(0);
 	}
 	else
+	{
 		wait(&status);
+		i = 0;
+		while (args[i] != NULL)
+		{
+			free(args[i]);
+			i++;
+		}
+		free(args);
+	}
 }
