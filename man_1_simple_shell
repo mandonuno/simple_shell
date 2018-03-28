@@ -1,0 +1,82 @@
+.TH simple_shell 1 "29 Mar 2018" "version 1.0" "man_1_simple_shell"
+.SH NAME
+.B Simple Shell
+(hsh)
+.SH SYNOPSIS
+.B hsh
+[
+.B -asdfsag
+]
+[
+.I arg
+]...
+.SH DESCRIPTION
+.B Simple Shell
+is a UNIX command interpreter that reads lines from the terminal and
+interprets/executes them. The program displays a prompt and waits for
+user input. The prompt will continue to display again after executing a
+command until user
+.B exit
+or terminates
+.B (Crtl + D)
+the program.
+
+.SS Path Search
+When locating a command, the shell first looks to see if it has a shell
+function by that name, then it looks for a builtin command by that name.
+If a builtin command is not found, one of two things happen:
+.IP 1.
+Command names containing a slash are simply executed without performing
+any searches.
+.IP 2.
+The shell searches each entry in PATH in turn for the command.
+The value of the PATH variable should be a series of entries seperated
+by colons. Each entry consists of a directory name. The current
+directory may be indicated implicitly by an empty directory name, or
+explicitly by a single period.
+.SS Command Exit Status
+Each command has an exit status that can influence the behaviour of
+other shell commands.  The paradigm is that a command exits with
+zero for normal or success, and non-zero for failure, error, or a
+false indication.  The man page for each command should indicate the
+various exit codes and what they mean.  Additionally, the builtin
+commands return exit codes, as does an executed shell function.
+
+If a command consists entirely of variable assignments then the exit
+status of the command is that of the last command substitution if
+any, otherwise 0.
+.SH EXIT STATUS
+Errors that are detected by the shell, such as a syntax error, will
+cause the shell to exit with a non-zero exit status.  If the shell
+is not an interactive shell, the execution of the shell file will be
+aborted.  Otherwise the shell will return the exit status of the
+last command executed, or if the exit builtin is used with a numeric
+argument, it will return the argument.
+.SH ENVIRONMENT
+.IP HOME
+Set automatically by login(1) from the user's login
+directory in the password file (passwd(4)).  This
+environment variable also functions as the default
+argument for the cd builtin.
+.IP PATH
+The default search path for executables. See the above
+section
+.I Path Search
+.IP IFS
+Input Field Separators. This is normally set to ⟨space⟩,
+⟨tab⟩, and ⟨newline⟩.
+.IP PWD
+The logical value of the current working directory.
+.IP OLDPWD
+The previous logical value of the current working
+directory.
+.IP PPID
+The process ID of the parent process of the shell
+.SH FILES
+.I $HOME/.profile
+
+.I /etc/profile
+.SH BUGS
+Memory leaks everywhere!
+.SH AUTHOR
+Armando Nuno and Leon Cheung
