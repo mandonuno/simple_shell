@@ -1,17 +1,13 @@
 #include "shell.h"
 /**
  * main - simple UNIX command interpreter
- * @argc: argument count
- * @argv: array of arguments
  * Return: Always 0
  */
-int main(int argc, char *argv[])
+int main(void)
 {
-	(void)argc;
-	(void)argv;
 	simple_shell();
 	printprompt("\n");
- 	return (0);
+	return (0);
 }
 /**
  * simple_shell - simple UNIX command interpreter
@@ -20,29 +16,41 @@ int main(int argc, char *argv[])
 void simple_shell(void)
 {
 	char *args, **arr, *env, **path;
-	size_t len;
+	size_t len = 0;
 
-	len = 0;
+	signal(SIGINT, _sig);
+
 	args = NULL;
 	arr = malloc(sizeof(char *) * BUFSIZE);
 	if (arr == NULL)
-		exit(1);
-	printprompt("$ ");
-	while (getline(&args, &len, stdin) != EOF)
 	{
-		if (args[0] != '\n')
+		free(arr);
+		exit(1);
+	}
+	printprompt("$ ");
+	while (getline(&args, &len, stdin) != -1)
+	{
+		if (args[0] != '\n' && args[0] != '#')
 		{
+			free(arr);
 			arr = token_line(args);
 			if (builtin_func(arr) == 1)
 			{
-				env = _getenv("PATH");
-				path = _getpath(env, arr);
-				execute(arr, path);
-				printprompt("$ ");
+				if (arr[0][0] == '/')
+				{
+					execute_slash(arr);
+					printprompt("$ ");
+				}
+				else
+				{
+					env = _getenv("PATH");
+					path = _getpath(env, arr);
+					execute(arr, path);
+					printprompt("$ ");
+				}
 			}
 			else
 				printprompt("$ ");
-			free(arr);
 		}
 		else
 			printprompt("$ ");

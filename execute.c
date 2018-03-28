@@ -6,31 +6,49 @@
  */
 void execute(char **arr, char **args)
 {
-	pid_t child_p;
+	pid_t pid;
 	int i, status;
 
-	i = 0;
-	child_p = fork();
+	i = status = 0;
+	pid = fork();
 
-	if (child_p == 0)
+	if (pid == 0)
 	{
 		i = 0;
 		while (args[i] != NULL)
 			if (execve(args[i], arr, NULL) == -1)
 				i++;
-		printprompt("\aCommand not found\n");
-		printprompt("Run command [help]\n");
-		_exit(0);
+		perror("Error");
+		free(arr);
+		_exit(1);
 	}
 	else
 	{
 		wait(&status);
-		i = 0;
-		while (args[i] != NULL)
-		{
-			free(args[i]);
-			i++;
-		}
-		free(args);
+
 	}
+}
+/**
+ * execute_slash - executes input that begin with a "/"
+ * @arr: user input
+ */
+void execute_slash(char **arr)
+{
+	pid_t pid;
+	int status;
+
+	pid = fork();
+
+	if (pid == 0)
+	{
+		if (execve(arr[0], arr, environ) == -1)
+		{
+			perror("Error");
+			_putchar('\n');
+			free(arr);
+			_exit(1);
+		}
+	}
+	else
+		wait(&status);
 }

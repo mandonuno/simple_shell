@@ -51,8 +51,10 @@ void simple_shell(void);
 char *_getenv(char *name);
 char **_getpath(char *str, char **args);
 void execute(char **arr, char **args);
+void execute_slash(char **arr);
 char **token_line(char *line);
 char *_memset(char *s, char b, unsigned int n);
 int _atoi(char *s);
+void _sig(int sig);
 
 #endif

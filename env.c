@@ -28,29 +28,30 @@ char *_getenv(char *name)
 char **_getpath(char *s, char **args)
 {
 	char **arr, *token, *path, *str, *del;
-	int i, count;
+	int i;
 
-	del = "/";
-	i = 0;
-	count = _strlen(s);
-	path = malloc(sizeof(char) * count);
+	path = malloc(sizeof(char) * _strlen(s));
 	if (path == NULL)
-		exit(1);
+	{
+		free(path);
+		_exit(1);
+	}
 	_strcpy(path, s);
 	token = strtok(path, ":");
-	free(path);
 	arr = malloc(sizeof(char *) * BUFSIZE);
 	if (arr == NULL)
 	{
 		free(arr);
-		exit(1);
+		_exit(1);
 	}
 	str = malloc(sizeof(char) * BUFSIZE);
 	if (str == NULL)
 	{
 		free(str);
-		exit(1);
+		_exit(1);
 	}
+	del = "/";
+	i = 0;
 	while (token != NULL)
 	{
 		_strcat(str, token);
@@ -61,5 +62,7 @@ char **_getpath(char *s, char **args)
 		_memset(str, 0, BUFSIZE);
 		i++;
 	}
+	free(str);
+	free(path);
 	return (arr);
 }
