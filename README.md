@@ -14,13 +14,13 @@
 | :--- | :---------- |
 | shell.c | Executes the commands passed in via command line |
 | shell.h | Contains all the necessary headers, functions and structures used to make the shell run |
-| token_line.c | Splits the argument into pieces |
+| token_line.c | removes spaces, tabs, and newlines from prompt before, between, and after command is entered  |
 | string_func.c | Contains all the functions necessary to for the shell to interpret the arguments from the prompt |
 | print_func.c | Prints the prompt |
 | execute.c | Executes command if it exists |
 | builtin_func.c | Checks for builtin functions in the environment |
 | memory.c | Fill memory with constant bytes |
-| env.c | Obtains environment variable and locates PATH to execution file |
+| env.c | Splits the argument into pieces, obtains environment variable, and locates PATH to execution file |
 | _atoi.c | converts arguments to integers for exit status |
 | signal.c | handles ctrl + c (makes it no longer exit) |
 | AUTHORS | contains contact information of all contributors to this project |
