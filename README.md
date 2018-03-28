@@ -22,6 +22,7 @@
 | memory.c | Fill memory with constant bytes |
 | env.c | Obtains environment variable and locates PATH to execution file |
 | _atoi.c | converts arguments to integers for exit status |
+| signal.c | handles ctrl + c (makes it no longer exit) |
 | AUTHORS | contains contact information of all contributors to this project |
 
 ### Example
