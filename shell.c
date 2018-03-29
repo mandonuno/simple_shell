@@ -21,18 +21,11 @@ void simple_shell(void)
 	signal(SIGINT, _sig);
 
 	args = NULL;
-	arr = malloc(sizeof(char *) * BUFSIZE);
-	if (arr == NULL)
-	{
-		free(arr);
-		exit(1);
-	}
 	printprompt("$ ");
 	while (getline(&args, &len, stdin) != -1)
 	{
 		if (args[0] != '\n' && args[0] != '#')
 		{
-			free(arr);
 			arr = token_line(args);
 			if (builtin_func(arr) == 1)
 			{
@@ -51,6 +44,7 @@ void simple_shell(void)
 			}
 			else
 				printprompt("$ ");
+			free(arr);
 		}
 		else
 			printprompt("$ ");
