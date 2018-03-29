@@ -18,7 +18,6 @@ void execute(char **arr, char **args)
 		while (args[i] != NULL)
 			if (execve(args[i], arr, NULL) == -1)
 				i++;
-		perror("Error");
 		free(arr);
 		_exit(1);
 	}
@@ -43,12 +42,13 @@ void execute_slash(char **arr)
 	{
 		if (execve(arr[0], arr, environ) == -1)
 		{
-			perror("Error");
 			_putchar('\n');
 			free(arr);
 			_exit(1);
 		}
 	}
 	else
+	{
 		wait(&status);
+	}
 }
