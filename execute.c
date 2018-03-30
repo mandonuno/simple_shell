@@ -16,7 +16,7 @@ void execute(char **arr, char **args)
 	{
 		i = 0;
 		while (args[i] != NULL)
-			if (execve(args[i], arr, NULL) == -1)
+			if (execve(args[i], arr, environ) == -1)
 				i++;
 		free(arr);
 		_exit(1);
