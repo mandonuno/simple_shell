@@ -62,7 +62,7 @@ char **_getpath(char *s, char **args)
 		_memset(str, 0, BUFSIZE);
 		i++;
 	}
-	free(str);
 	free(path);
+	free(str);
 	return (arr);
 }

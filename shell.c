@@ -24,7 +24,7 @@ void simple_shell(void)
 	printprompt("$ ");
 	while (getline(&args, &len, stdin) != -1)
 	{
-		if (args[0] != '\n' && args[0] != '#')
+		if (args[0] != '\n')
 		{
 			arr = token_line(args);
 			if (builtin_func(arr) == 1)
@@ -44,9 +44,9 @@ void simple_shell(void)
 			}
 			else
 				printprompt("$ ");
-			free(arr);
 		}
 		else
 			printprompt("$ ");
 	}
+	free(arr);
 }

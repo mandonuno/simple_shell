@@ -6,7 +6,7 @@
  * @n: first n bytes of memory
  * Return: pointer to the memory area s
  */
-char *_memset(char *s, char b, unsigned int n)
+char *_memset(char *s, int b, unsigned int n)
 {
 	/* s => Starting address of memory to be filled */
 	/* b => Value to be filled*/
