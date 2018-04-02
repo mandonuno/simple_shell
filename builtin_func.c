@@ -76,19 +76,17 @@ int printenv(char **args)
 	{
 		while (environ[i] != NULL)
 		{
-			for (j = 0; environ[i][j] != '\0'; j++)
-				;
-			write(STDOUT_FILENO, environ[i], j);
-			_putchar('\n');
-			i++;
+			j = 0;
+			while (environ[i][j] != '\0')
+			{
+				_putchar(environ[i][j]);
+				j++;
+			}
 		}
 		return (0);
 	}
-	else
-	{
-		_putchar('\n');
-		return (1);
-	}
+	_putchar('\n');
+	return (1);
 }
 /**
  * help_function - prints help
